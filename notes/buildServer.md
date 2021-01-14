@@ -1,5 +1,20 @@
 # 部署以及配置服务
 
+# 菜单
+
+[👈👈👈👈点我回主页](../README.md)
+
+[一、配置Maven（如果已配置，可跳过）](buildDatabase.md)
+
+[一、基础数据库配置](buildDatabase.md)
+
+[二、Redis配置](buildRedis.md)
+
+[三、Email配置](buildEmail.md)
+
+[四、部署TD-blog服务](buildServer.md) 
+
+
 
 ## 一、如果你是idea
 > 直接启动即可

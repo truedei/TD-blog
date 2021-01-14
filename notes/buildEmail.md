@@ -1,5 +1,22 @@
 # 配置Email
 
+# 菜单
+
+[👈👈👈👈点我回主页](../README.md)
+
+[一、配置Maven（如果已配置，可跳过）](buildDatabase.md)
+
+[一、基础数据库配置](buildDatabase.md)
+
+[二、Redis配置](buildRedis.md)
+
+[三、Email配置](buildEmail.md)
+
+[四、部署TD-blog服务](buildServer.md) 
+
+
+
+
 QQ邮箱的官方说明:https://service.mail.qq.com/cgi-bin/help?subtype=1&&no=1001256&&id=28
 
 ## 什么是授权码，它又是如何设置？

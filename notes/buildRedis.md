@@ -1,6 +1,20 @@
 # 部署以及配置Redis
 
-> 暂时还没写
+
+# 菜单
+
+[👈👈👈👈点我回主页](../README.md)
+
+[一、配置Maven（如果已配置，可跳过）](buildDatabase.md)
+
+[一、基础数据库配置](buildDatabase.md)
+
+[二、Redis配置](buildRedis.md)
+
+[三、Email配置](buildEmail.md)
+
+[四、部署TD-blog服务](buildServer.md) 
+
 
 
 1、如果你也是使用的docker，可以参考我的博客进行安装：https://blog.csdn.net/qq_17623363/article/details/106418353
