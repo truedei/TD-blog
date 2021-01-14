@@ -6,15 +6,15 @@
 
 # 菜单
 
-[一、配置Maven（如果已配置，可跳过）](notes/buildDatabase.md)
+[一、配置Maven（如果已配置，可跳过）](https://blog.csdn.net/qq_17623363/article/details/88858907)
 
-[一、基础数据库配置](notes/buildDatabase.md)
+[二、基础数据库配置](notes/buildDatabase.md)
 
-[二、Redis配置](notes/buildRedis.md)
+[三、Redis配置](notes/buildRedis.md)
 
-[三、Email配置](notes/buildEmail.md)
+[四、Email配置](notes/buildEmail.md)
 
-[四、部署TD-blog服务](notes/buildServer.md)
+[五、部署TD-blog服务](notes/buildServer.md)
 
 
    
