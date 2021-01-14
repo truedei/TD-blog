@@ -1,0 +1,65 @@
+server:
+  port: 80
+spring:
+  #  数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://数据库地址:3306/数据库名?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    username: root #数据库账号
+    password: 123456 #数据库密码
+    druid:
+      max-active: 100
+      min-idle: 10
+      initial-size: 20
+
+  #电子邮件配置
+  mail:
+    host: smtp.qq.com #QQ邮箱的地址
+    port: 587 #QQ邮箱的端口号
+    username: 8042965@qq.com #自己的QQ邮箱
+    password: xxxxxxxxxxxx #QQ邮箱的授权码，不是自己的qq密码
+
+  thymeleaf:
+    prefix: classpath:/templates/ # 指定 thymeleaf 模板路径
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8 # 指定字符集编码
+    mode: LEGACYHTML5 # 去除htm5严格校验
+    cache: false # 关闭缓存
+    servlet:
+      content-type: text/html
+  mvc:
+    static-path-pattern: classpath:/static/**,classpath:/templates/
+
+  #Redis缓存配置
+  redis:
+    database: 0
+    host: xxx.xxx.xxx.xxx #Redis服务器的地址
+    port: 6379 #Redis服务器的地址的端口号
+    password: 123456 #Redis服务器的密码
+    jedis:
+      pool:
+        max-active: 80
+        max-wait: -1
+        max-idle: 80
+        min-idle: 0
+    timeout: 3000
+
+#    mybatis配置
+mybatis:
+  type-aliases-package: com.truedei.blog.dao
+
+
+looging:
+  config: classpath:logback-spring.xml
+
+httpportcfg:
+  http_port: 8080
+  https_port: 8443
+
+# Nettyserver 配置
+nettyserver:
+  serviceIp: 0.0.0.0
+  servicePort: 3460
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/jantent/header::header(title='文章归档',keywords=null)"></div>
+<body>
+<div class="main-content archive-page clearfix">
+    <h1 class="blog-text-center">-- 存档 --</h1>
+    <div class="am-u-sm-12">
+        <th:block th:each="archive : ${archives}">
+            <ul>
+                <h2 th:text="${archive.date}"></h2>
+                    <th:block th:each="article : ${archive.articles}">
+                        <li>
+                            <span class="am-u-sm-4 am-u-md-2 timeline-span">
+                                <th:block th:text="${commons.fmtdate(article.created)}"/>
+                            </span>
+                            <span class="am-u-sm-8 am-u-md-6">
+                                <a th:href="${commons.permalink(article.cid, article.slug)}"
+                                   th:text="${article.title}"></a>
+                            </span>
+                        </li>
+                    </th:block>
+            </ul>
+        </th:block>
+    </div>
+</div>
+</div>
+</body>
+<div th:replace="themes/jantent/footer::footer"></div>
+</html>

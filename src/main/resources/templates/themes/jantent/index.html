@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/jantent/header::header(null,null)"></div>
+<style>
+
+
+    .zhaiyao{
+        ine-height: 1.714285714;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+</style>
+<body>
+
+
+<div class="am-g am-g-fixed blog-fixed index-page">
+    <div class="am-u-md-8 am-u-sm-12">
+        <div th:each="article: ${articles.list}">
+
+            <article class="am-g blog-entry-article">
+                <div class="am-u-lg-4 am-u-md-6 am-u-sm-6 blog-entry-img">
+                    <img th:src="@{${commons.show_thumb(article)}}" alt="" class="am-u-sm-12" style="height: 145px;width: 207.76px"/>
+                </div>
+                <div class="am-u-lg-8 am-u-md-12 am-u-sm-12 blog-entry-text">
+                      <h2>
+                        <div><a th:href="${commons.permalink(article)}"
+                                th:text="${article.title}"></a>
+                        </div>
+                    </h2>
+                    <!-- 文章摘要-->
+                    <div th:utext="${commons.intro(article,100)}" class="zhaiyao">
+                    </div>
+                </div>
+
+                <div class="am-u-lg-12 am-u-md-12 am-u-sm-12 blog-entry-text">
+                    <!-- 文章分类 -->
+                    <span class="blog-color" th:utext="'所属分类：' +${commons.show_categories(article.categories)}"></span>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <!-- 发布时间 -->
+                    <span th:text="'发布时间:'+ ${commons.fmtdate(article.created)}"></span>
+
+                    <!-- 阅读量 -->
+                    <span th:text="'阅读量:'+ ${article.hits}"></span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <!--翻页-->
+        <div class="am-pagination">
+            <div th:replace="comm/macros::pageNav(${articles},'上一页','下一页',${requestURI})"></div>
+        </div>
+    </div>
+
+
+    <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
+        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>小纸条</span></h2>
+            <img th:src="@{/static/admin/images/weixingongzhonghao.jpg}" alt="微信公众号" class="blog-entry-img"/>
+            <p>
+                个人公众号(回复666有惊喜)
+            </p>
+            <p>个人博客小站，主要发表关于Linux、Java、springboot、springcloud、mybatis、jvm等相关文章</p>
+
+            <h2 class="blog-text-center blog-title"><span>QQ交流群</span></h2>
+            <img th:src="@{/static/admin/images/qqqun.png}" alt="微信公众号" class="blog-entry-img"/>
+            <p>
+                欢迎加入，可免费下载CSDN资源哦
+            </p>
+        </div>
+
+        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>我的其他活动场所</span></h2>
+            <p>
+                <a href="https://truedei.blog.csdn.net/">TrueDei在CSDN</a>
+            </p>
+            <p>
+                <a href="https://cloud.tencent.com/developer/user/1150278">TrueDei在腾讯云+社区</a>
+            </p>
+            <p>
+                <a href="https://juejin.cn/user/914441825695326">TrueDei在掘金</a>
+            </p>
+            <p>
+                <a href="https://my.oschina.net/u/3901672">TrueDei在开源中国</a>
+            </p>
+
+        </div>
+
+        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>热门文章</span></h2>
+            <p>
+                待开发...
+            </p>
+        </div>
+
+        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>近期留言</span></h2>
+            <p>
+                待开发...
+            </p>
+        </div>
+
+        <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
+            <h2 class="blog-title"><span>标签云</span></h2>
+            <div class="am-u-sm-12 blog-clear-padding">
+                    <th:block th:each="c : ${categories}">
+                            <th:block th:if="${c.name == '默认分类'}">
+                                <a th:href="${commons.showCategoryUrl(c)}" class="blog-tag">
+                                    <th:block th:text="${c.name}"/>
+                                    <th:block th:text="' ('+${c.count}+')'"/>
+                                </a>
+                            </th:block>
+                            <th:block th:unless="${c.name == '默认分类'}">
+                                <a th:href="${commons.showCategoryUrl(c)}" class="blog-tag">
+                                    <th:block th:text="${c.name}"/>
+                                    <th:block th:text="' ('+${c.count}+')'"/>
+                                    <span class="caret"></span>
+                                </a>
+                            </th:block>
+
+                    </th:block>
+            </div>
+        </div>
+
+<!--        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>友情链接</span></h2>
+            <p>
+                <a href="">链接1</a>
+            </p>
+            <p>
+                <a href="">链接2</a>
+            </p>
+        </div>-->
+
+    </div>
+</div>
+
+</body>
+<div th:replace="themes/jantent/footer::footer"></div>
+
+</html>

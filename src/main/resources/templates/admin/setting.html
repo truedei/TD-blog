@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='系统设置',active='settings'">
+<header th:replace="admin/header::headerFragment(${title},${active})"></header>
+<link th:href="@{/static/admin/plugins/toggles/toggles.css}" rel="stylesheet"/>
+<body class="fixed-left">
+<div id="wrapper">
+    <div th:replace="admin/header::header-body"></div>
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">系统设置</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">全局设置</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form" id="global-form">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点名称</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_title" placeholder="站点名称"
+                                                   th:value="${options.site_title}" required="required" aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点描述</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_description" placeholder="站点描述"
+                                                   th:value="${options.site_description}" required="required" aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">ICP备案号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_record" placeholder="ICP备案号"
+                                                   th:value="${options.site_record}" required="required" aria-required="true"/>
+                                          <!--  <input type="hidden" class="form-control" name="attach_url" value="localhost"/>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">博客主题</label>
+                                        <div class="col-md-9">
+                                            <select name="site_theme" class="form-control">
+                                                <option value="jantent" th:selected="${options.site_theme=='jantent'}?true:false">默认主题</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="allow_install" id="allow_install"/>
+                                    <div class="clearfix pull-right">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveSetting()">
+                                            保存设置
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">高级选项设置</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form" id="advanced-form">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">清理缓存</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="cache_key" placeholder="请输入缓存前缀，输入*删除所有缓存"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">黑名单IP列表</label>
+                                        <div class="col-md-9">
+                            <textarea rows="3" class="form-control" name="block_ips"
+                                      placeholder="请输入黑名单IP，如：123.123.33.23,123.123.33.24" th:text="${options.site_block_ips}"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix pull-right">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveAdvanced()">
+                                            保存设置
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div th:replace="admin/footer :: footer-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+<script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var tale = new $.tale();
+
+    /**
+     * 保存全局设置
+     */
+    function saveSetting() {
+        var param = $('#global-form').serialize();
+        tale.post({
+            url : '/admin/setting',
+            data: param,
+            success: function (result) {
+                if(result && result.success){
+                    tale.alertOk('设置保存成功');
+                } else {
+                    tale.alertError(result.msg || '设置保存失败');
+                }
+            }
+        });
+    }
+
+    /**
+     * 保存高级选项设置
+     */
+    function saveAdvanced() {
+        var param = $('#advanced-form').serialize();
+        tale.post({
+            url: '/admin/setting/advanced',
+            data: param,
+            success: function (result) {
+                if (result && result.success) {
+                    tale.alertOk('选项保存成功');
+                } else {
+                    tale.alertError(result.msg || '选项保存失败');
+                }
+            }
+        });
+    }
+
+
+
+    /*]]>*/
+</script>
+</body>
+</html>

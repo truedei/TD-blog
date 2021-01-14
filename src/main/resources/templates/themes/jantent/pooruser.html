@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--  <script th:src="@{//cdn.bootcss.com/jquery/2.2.3/jquery.min.js}"></script>
+    <script th:src="@{/jantent/assets/js/qrcode.js}"></script>
+    <script th:src="@{/jantent/assets/js/jquery.qrcode.js}"></script>-->
+    <link rel="stylesheet" th:href="@{/jantent/assets/css/pooruser.css}"/>
+</head>
+<div th:replace="themes/jantent/header::header(${poorUser.username},null)"></div>
+<body>
+<article class="main-content post-page">
+    <div class="section-block about-block">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="info-list">
+                        <li>
+                            <strong>姓名:</strong>
+                            <span><th:block th:text="${poorUser.username}"/></span>
+                        </li>
+                        <li>
+                            <strong>扶贫原因:</strong>
+                            <span><th:block th:text="${poorUser.poorReason}"/></span>
+                        </li>
+                        <li>
+                            <strong>年龄:</strong>
+                            <span><th:block th:text="${poorUser.age}"/></span>
+                        </li>
+                        <li>
+                            <strong>身份证号:</strong>
+                            <span><th:block th:text="${poorUser.idNumber}"/></span>
+                        </li>
+                        <li>
+                            <strong>联系方式:</strong>
+                            <span><th:block th:text="${poorUser.mobilePhone}"/></span>
+                        </li>
+                        <li>
+                            <strong>脱贫时间:</strong>
+                            <span> <time th:datetime="${commons.fmtdate(poorUser.outpoorDate)}" itemprop="datePublished" th:text=" ${commons.fmtdate(poorUser.outpoorDate)}"></time></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <strong>享受政策:</strong>
+                    <div class="about-text">
+                        <th:block th:utext="${commons.article(poorUser.enjoyPolicy)}"/>
+                    </div>
+                </div>
+            </div>
+         <!--   <div class="row" style="width:100%;height: 300px;">
+                <div class="col-md-12" style="float: right">
+                    <div id="divOne"></div>
+                    <img id='imgOne' />
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+   <!-- <script>
+        //默认使用Canvas生成，并显示到图片
+        var url = window.location.href
+        url=url.substring(0,url.lastIndexOf("/"));
+        var qrcode=$("#divOne").qrcode({
+            render:'canvas',
+            width: 200, //宽度
+            height:200, //高度
+            text: url //任意内容
+        }).hide();
+        var canvas=qrcode.find('canvas').get(0);
+        $('#imgOne').attr('src',canvas.toDataURL('image/jpg'));
+
+    </script>-->
+</article>
+<div th:replace="themes/jantent/footer::footer"></div>
+</body>
+</html>
